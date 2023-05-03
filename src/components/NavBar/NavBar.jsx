@@ -8,8 +8,8 @@ export default function NavBar() {
     <>
       <nav className="navbar navbar-expand-sm navbar-light bg-light">
         <div className="container">
-          <Link className="navbar-brand" to="">
-            <img src={images.logo} alt="" />
+          <Link className="navbar-brand" to="/">
+            <img src={images.logo} alt="Fresh Cat Logo" />
           </Link>
           <button
             className="navbar-toggler d-lg-none"
@@ -25,7 +25,7 @@ export default function NavBar() {
           <div className="collapse navbar-collapse" id="collapsibleNavId">
             <ul className="navbar-nav me-auto mt-2 mt-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" to="">
+                <Link className="nav-link" to="/">
                   Home
                 </Link>
               </li>
@@ -70,9 +70,7 @@ export default function NavBar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="logout">
-                  Logout
-                </Link>
+                <Link className="nav-link">Logout</Link>
               </li>
             </ul>
           </div>
