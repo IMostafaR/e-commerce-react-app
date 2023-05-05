@@ -3,10 +3,10 @@ import styles from "./NavBar.module.css";
 import { images } from "../../assets/images";
 import { Link } from "react-router-dom";
 
-export default function NavBar() {
+export default function NavBar({ userData }) {
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-light bg-light sticky-top">
+      <nav className="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div className="container">
           <Link className="navbar-brand" to="/">
             <img src={images.logo} alt="Fresh Cat Logo" />
@@ -23,33 +23,36 @@ export default function NavBar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="collapsibleNavId">
-            <ul className="navbar-nav me-auto mt-2 mt-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link" to="/">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="cart">
-                  Cart
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="products">
-                  Products
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="categories">
-                  Categories
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="brands">
-                  Brands
-                </Link>
-              </li>
-            </ul>
+            {userData !== null ? (
+              <ul className="navbar-nav me-auto mt-2 mt-lg-0">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="cart">
+                    Cart
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="products">
+                    Products
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="categories">
+                    Categories
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="brands">
+                    Brands
+                  </Link>
+                </li>
+              </ul>
+            ) : null}
+
             <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
               <li className="nav-item d-flex align-items-center">
                 <i className="fab fa-instagram mx-2"></i>
@@ -59,19 +62,25 @@ export default function NavBar() {
                 <i className="fab fa-linkedin mx-2"></i>
                 <i className="fab fa-youtube mx-2"></i>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="login">
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="register">
-                  Register
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link">Logout</Link>
-              </li>
+
+              {userData === null ? (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="login">
+                      Login
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="register">
+                      Register
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <li className="nav-item">
+                  <Link className="nav-link">Logout</Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>

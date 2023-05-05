@@ -8,17 +8,22 @@ import axios from "axios";
 
 export default function Register() {
   let navigate = useNavigate();
-  const [loader, setloader] = useState("second");
 
+  const [loader, setLoader] = useState(false);
+  const [msgError, setMsgError] = useState("");
   const [passwordType, setPasswordType] = useState("password");
 
   async function handleRegister(values) {
-    let { data } = await axios.post(
-      `https://route-ecommerce.onrender.com/api/v1/auth/signup`,
-      values
-    );
+    setLoader(true);
+    let { data } = await axios
+      .post(`https://route-ecommerce.onrender.com/api/v1/auth/signup`, values)
+      .catch((err) => {
+        setLoader(false);
+        setMsgError(`${err.response.data.message}`);
+      });
 
     if (data.message === "success") {
+      setLoader(false);
       navigate("/login");
     }
   }
@@ -63,7 +68,11 @@ export default function Register() {
           <form onSubmit={formik.handleSubmit}>
             <div className="form-floating mb-3">
               <input
-                className="form-control"
+                className={
+                  formik.errors.name && formik.touched.name
+                    ? "form-control border-danger shadow-none"
+                    : "form-control"
+                }
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.name}
@@ -83,7 +92,11 @@ export default function Register() {
 
             <div className="form-floating mb-3">
               <input
-                className="form-control"
+                className={
+                  (formik.errors.email && formik.touched.email) || msgError
+                    ? "form-control border-danger shadow-none"
+                    : "form-control"
+                }
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.email}
@@ -96,13 +109,21 @@ export default function Register() {
                 <label className="text-danger fw-bold" htmlFor="email">
                   {formik.errors.email}
                 </label>
+              ) : msgError ? (
+                <label className="text-danger fw-bold" htmlFor="email">
+                  {msgError}
+                </label>
               ) : (
                 <label htmlFor="email">Email</label>
               )}
             </div>
             <div className="form-floating mb-3">
               <input
-                className="form-control"
+                className={
+                  formik.errors.phone && formik.touched.phone
+                    ? "form-control border-danger shadow-none"
+                    : "form-control"
+                }
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.phone}
@@ -123,7 +144,11 @@ export default function Register() {
               <div className="col-md 6">
                 <div className="form-floating mb-4">
                   <input
-                    className="form-control"
+                    className={
+                      formik.errors.password && formik.touched.password
+                        ? "form-control border-danger shadow-none"
+                        : "form-control"
+                    }
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.password}
@@ -144,7 +169,11 @@ export default function Register() {
               <div className="col-md 6">
                 <div className="form-floating mb-4">
                   <input
-                    className="form-control"
+                    className={
+                      formik.errors.rePassword && formik.touched.rePassword
+                        ? "form-control border-danger shadow-none"
+                        : "form-control"
+                    }
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.rePassword}
@@ -171,10 +200,14 @@ export default function Register() {
 
             <button
               disabled={!(formik.isValid && formik.dirty)}
-              type="submit"
+              type={loader ? "button" : "submit"}
               className="btn bg-main text-white w-100 my-3"
             >
-              Register
+              {loader ? (
+                <i className="fa-solid fa-spinner fa-spin-pulse"></i>
+              ) : (
+                "Register"
+              )}
             </button>
           </form>
           <p className="mb-0">
