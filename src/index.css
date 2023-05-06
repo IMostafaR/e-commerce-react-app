@@ -46,6 +46,11 @@ a:hover {
   color: black;
   text-decoration: none;
 }
+
+.product {
+  min-height: 25rem;
+}
+
 .product:hover {
   box-shadow: var(--shadow);
   border: solid 1px var(--main-color);
@@ -54,6 +59,11 @@ a:hover {
   transition: transform 1s, opacity 1s;
   transform: translateY(100%);
   opacity: 0;
+  transition: opacity, transform, 400ms;
+  -webkit-transition: opacity, transform, 400ms;
+  -moz-transition: opacity, transform, 400ms;
+  -ms-transition: opacity, transform, 400ms;
+  -o-transition: opacity, transform, 400ms;
 }
 .product:hover .btn {
   opacity: 1;

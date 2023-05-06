@@ -7,7 +7,6 @@ export default function Home() {
     <>
       <div className="container my-5 ">
         <FeaturedProducts />
-        <h2>Home</h2>
       </div>
     </>
   );
