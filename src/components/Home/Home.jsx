@@ -1,10 +1,14 @@
 import React from "react";
 import styles from "./Home.module.css";
+import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
 
 export default function Home() {
   return (
     <>
-      <h2>Home</h2>
+      <div className="container my-5 ">
+        <FeaturedProducts />
+        <h2>Home</h2>
+      </div>
     </>
   );
 }
