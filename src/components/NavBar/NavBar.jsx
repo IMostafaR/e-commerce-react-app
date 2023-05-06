@@ -3,7 +3,7 @@ import styles from "./NavBar.module.css";
 import { images } from "../../assets/images";
 import { Link } from "react-router-dom";
 
-export default function NavBar({ userData }) {
+export default function NavBar({ userData, logOut }) {
   return (
     <>
       <nav className="navbar navbar-expand-md navbar-light bg-light sticky-top">
@@ -78,7 +78,9 @@ export default function NavBar({ userData }) {
                 </>
               ) : (
                 <li className="nav-item">
-                  <Link className="nav-link">Logout</Link>
+                  <Link className="nav-link" onClick={logOut}>
+                    Logout
+                  </Link>
                 </li>
               )}
             </ul>
