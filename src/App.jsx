@@ -7,6 +7,7 @@ import Cart from "./components/Cart/Cart";
 import Products from "./components/Products/Products";
 import Categories from "./components/Categories/Categories";
 import Brands from "./components/Brands/Brands";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import NotFound from "./components/NotFound/NotFound";
@@ -46,7 +47,7 @@ function App() {
           path: "cart",
           element: (
             <ProtectedRoute>
-              <Cart />{" "}
+              <Cart />
             </ProtectedRoute>
           ),
         },
@@ -54,7 +55,7 @@ function App() {
           path: "products",
           element: (
             <ProtectedRoute>
-              <Products />{" "}
+              <Products />
             </ProtectedRoute>
           ),
         },
@@ -62,7 +63,7 @@ function App() {
           path: "categories",
           element: (
             <ProtectedRoute>
-              <Categories />{" "}
+              <Categories />
             </ProtectedRoute>
           ),
         },
@@ -70,7 +71,15 @@ function App() {
           path: "brands",
           element: (
             <ProtectedRoute>
-              <Brands />{" "}
+              <Brands />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: ":id",
+          element: (
+            <ProtectedRoute>
+              <ProductDetails />
             </ProtectedRoute>
           ),
         },

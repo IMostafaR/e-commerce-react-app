@@ -15,7 +15,7 @@ export default function Footer() {
             <div className="col-xl-10 col-lg-9 col-md-8 col-sm-6">
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 id="exampleFormControlInput1"
                 placeholder="Email"
               />
