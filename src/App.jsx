@@ -14,6 +14,8 @@ import NotFound from "./components/NotFound/NotFound";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import CartContextProvider from "./context/CartContext";
+import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   const [userData, setUserData] = useState(null);
@@ -91,7 +93,10 @@ function App() {
   ]);
   return (
     <>
-      <RouterProvider router={routers}></RouterProvider>
+      <CartContextProvider>
+        <Toaster />
+        <RouterProvider router={routers}></RouterProvider>
+      </CartContextProvider>
     </>
   );
 }

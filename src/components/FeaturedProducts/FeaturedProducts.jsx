@@ -1,12 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./FeaturedProducts.module.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
+import { cartContext } from "../../context/CartContext";
+import { toast } from "react-hot-toast";
 
 export default function FeaturedProducts() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [loader, setLoader] = useState(false);
+  const [activeBtnId, setActiveBtnId] = useState(null);
+  const [btnLoader, setBtnLoader] = useState(false);
+
+  let { addToCart } = useContext(cartContext);
+
+  async function addProduct(productId) {
+    setBtnLoader(true);
+    let response = await addToCart(productId);
+    if (response?.data?.status === "success") {
+      toast.success(response.data.message, {
+        duration: 4000,
+        position: "bottom-right",
+        className:
+          "text-center border-2 border-success shadow bg-dark text-white font-sm",
+      });
+    } else {
+      toast.error(
+        "There is error during adding to your cart, please try again",
+        {
+          duration: 4000,
+          position: "bottom-right",
+        }
+      );
+    }
+    setBtnLoader(false);
+  }
 
   async function getFeaturedProducts() {
     setLoader(true);
@@ -54,7 +82,19 @@ export default function FeaturedProducts() {
                     </span>
                   </div>
                 </Link>
-                <button className="btn bg-main text-white w-100">+ Add</button>
+                <button
+                  onClick={() => {
+                    setActiveBtnId(product._id);
+                    addProduct(product._id);
+                  }}
+                  className="btn bg-main text-white w-100"
+                >
+                  {btnLoader && activeBtnId === product._id ? (
+                    <i className="fa-solid fa-spinner fa-spin-pulse"></i>
+                  ) : (
+                    "+ Add"
+                  )}
+                </button>
               </div>
             </div>
           ))}

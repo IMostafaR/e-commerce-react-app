@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Login.module.css";
 import { useFormik } from "formik";
 import ShowPassword from "../ShowPassword/ShowPassword";
@@ -9,23 +9,25 @@ import axios from "axios";
 export default function Login({ saveUserData }) {
   let navigate = useNavigate();
 
-  const [loader, setLoader] = useState(false);
+  const [btnLoader, setBtnLoader] = useState(false);
   const [msgError, setMsgError] = useState("");
   const [passwordType, setPasswordType] = useState("password");
 
+  useEffect(() => window.scrollTo(0, 0), []);
+
   async function handleLogin(values) {
-    setLoader(true);
+    setBtnLoader(true);
     let { data } = await axios
       .post(`https://route-ecommerce.onrender.com/api/v1/auth/signin`, values)
       .catch((err) => {
-        setLoader(false);
+        setBtnLoader(false);
         setMsgError(`${err.response.data.message}`);
       });
 
     if (data.message === "success") {
       localStorage.setItem("userToken", data.token);
       saveUserData();
-      setLoader(false);
+      setBtnLoader(false);
       navigate("/");
     }
   }
@@ -109,10 +111,10 @@ export default function Login({ saveUserData }) {
 
             <button
               disabled={!(formik.isValid && formik.dirty)}
-              type={loader ? "button" : "submit"}
+              type={btnLoader ? "button" : "submit"}
               className="btn bg-main text-white w-100 my-3"
             >
-              {loader ? (
+              {btnLoader ? (
                 <i className="fa-solid fa-spinner fa-spin-pulse"></i>
               ) : (
                 "Login"

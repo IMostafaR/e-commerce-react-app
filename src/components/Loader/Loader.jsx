@@ -5,7 +5,7 @@ export default function Loader() {
   return (
     <>
       <div className="d-flex justify-content-center align-items-center min-vh-100">
-        <span class={styles.loader}></span>
+        <span className={styles.loader}></span>
       </div>
     </>
   );

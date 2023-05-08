@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import styles from "./Register.module.css";
 import { useFormik } from "formik";
 import ShowPassword from "../ShowPassword/ShowPassword";
@@ -9,21 +9,23 @@ import axios from "axios";
 export default function Register() {
   let navigate = useNavigate();
 
-  const [loader, setLoader] = useState(false);
+  const [btnLoader, setBtnLoader] = useState(false);
   const [msgError, setMsgError] = useState("");
   const [passwordType, setPasswordType] = useState("password");
 
+  useEffect(() => window.scrollTo(0, 0), []);
+
   async function handleRegister(values) {
-    setLoader(true);
+    setBtnLoader(true);
     let { data } = await axios
       .post(`https://route-ecommerce.onrender.com/api/v1/auth/signup`, values)
       .catch((err) => {
-        setLoader(false);
+        setBtnLoader(false);
         setMsgError(`${err.response.data.message}`);
       });
 
     if (data.message === "success") {
-      setLoader(false);
+      setBtnLoader(false);
       navigate("/login");
     }
   }
@@ -200,10 +202,10 @@ export default function Register() {
 
             <button
               disabled={!(formik.isValid && formik.dirty)}
-              type={loader ? "button" : "submit"}
+              type={btnLoader ? "button" : "submit"}
               className="btn bg-main text-white w-100 my-3"
             >
-              {loader ? (
+              {btnLoader ? (
                 <i className="fa-solid fa-spinner fa-spin-pulse"></i>
               ) : (
                 "Register"
