@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import styles from "./Register.module.css";
+import styles from "./Register.module.css";
 import { useFormik } from "formik";
 import ShowPassword from "../ShowPassword/ShowPassword";
 import { Link, useNavigate } from "react-router-dom";

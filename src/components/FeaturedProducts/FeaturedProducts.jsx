@@ -12,12 +12,18 @@ export default function FeaturedProducts() {
   const [activeBtnId, setActiveBtnId] = useState(null);
   const [btnLoader, setBtnLoader] = useState(false);
 
-  let { addToCart } = useContext(cartContext);
+  let { addToCart, setNumOfCartItems, setAnimateCart } =
+    useContext(cartContext);
 
   async function addProduct(productId) {
     setBtnLoader(true);
     let response = await addToCart(productId);
     if (response?.data?.status === "success") {
+      setNumOfCartItems(response.data.numOfCartItems);
+      setAnimateCart(true);
+      setTimeout(() => {
+        setAnimateCart(false);
+      }, 1000);
       toast.success(response.data.message, {
         duration: 4000,
         position: "bottom-right",
@@ -64,7 +70,7 @@ export default function FeaturedProducts() {
               className="col-xl-2 col-lg-3 col-md-4 col-sm-6 g-3"
             >
               <div className="product p-4 cursor-pointer shadow rounded-3 overflow-hidden">
-                <Link to={product._id}>
+                <Link to={`product/${product._id}`}>
                   <img
                     className="img-fluid mb-2"
                     src={product.imageCover}
@@ -86,8 +92,10 @@ export default function FeaturedProducts() {
                 </Link>
                 <button
                   onClick={() => {
-                    setActiveBtnId(product._id);
-                    addProduct(product._id);
+                    if (!btnLoader) {
+                      setActiveBtnId(product._id);
+                      addProduct(product._id);
+                    }
                   }}
                   className="btn bg-main text-white w-100"
                 >

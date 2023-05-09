@@ -1,6 +1,6 @@
 export const images = {
   logo: require("./freshcart-logo.svg").default,
-  error: require("./error.svg"),
+  error: require("./error.svg").default,
   Banner1: require("./grocery-banner.png"),
   Banner2: require("./grocery-banner-2.jpeg"),
   background: require("./light-patten.svg"),
@@ -16,4 +16,5 @@ export const images = {
   americanExpress: require("./American-Express-Color.png"),
   mastercard: require("./MasterCard_Logo.svg.webp"),
   paypal: require("./PayPal.svg.png"),
+  emptyCart: require("./empty-cart.gif"),
 };

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { cartContext } from "../../context/CartContext";
 import styles from "./NavBar.module.css";
 import { images } from "../../assets/images";
 import { Link } from "react-router-dom";
 
 export default function NavBar({ userData, logOut }) {
+  let { numOfCartItems, animateCart } = useContext(cartContext);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-main-light sticky-top">
@@ -28,11 +31,6 @@ export default function NavBar({ userData, logOut }) {
                 <li className="nav-item">
                   <Link className="nav-link" to="/">
                     Home
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="cart">
-                    Cart
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -77,11 +75,29 @@ export default function NavBar({ userData, logOut }) {
                   </li>
                 </>
               ) : (
-                <li className="nav-item">
-                  <Link className="nav-link" onClick={logOut}>
-                    Logout
-                  </Link>
-                </li>
+                <>
+                  <li className="nav-item position-relative">
+                    <Link className="nav-link px-3" to="cart">
+                      <i className="fas fa-shopping-cart fa-lg"></i>
+                      <span
+                        className={`badge bg-main text-white position-absolute top-0 end-0 ${
+                          animateCart ? "fa-bounce" : ""
+                        }`}
+                      >
+                        {numOfCartItems}
+                      </span>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link px-2 text-danger"
+                      onClick={logOut}
+                    >
+                      Logout
+                      <i className="fa-solid fa-arrow-right-from-bracket mx-2"></i>{" "}
+                    </Link>
+                  </li>
+                </>
               )}
             </ul>
           </div>

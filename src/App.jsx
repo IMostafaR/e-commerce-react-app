@@ -8,6 +8,7 @@ import Products from "./components/Products/Products";
 import Categories from "./components/Categories/Categories";
 import Brands from "./components/Brands/Brands";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
+import Checkout from "./components/Checkout/Checkout";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import NotFound from "./components/NotFound/NotFound";
@@ -78,10 +79,18 @@ function App() {
           ),
         },
         {
-          path: ":id",
+          path: "product/:id",
           element: (
             <ProtectedRoute>
               <ProductDetails />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "checkout",
+          element: (
+            <ProtectedRoute>
+              <Checkout />
             </ProtectedRoute>
           ),
         },
