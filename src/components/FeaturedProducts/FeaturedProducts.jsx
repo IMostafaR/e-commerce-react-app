@@ -30,6 +30,8 @@ export default function FeaturedProducts() {
         {
           duration: 4000,
           position: "bottom-right",
+          className:
+            "text-center border-2 border-success shadow bg-dark text-white font-sm",
         }
       );
     }
