@@ -88,3 +88,11 @@ a:hover {
 .border-main {
   border: solid 1px var(--main-color);
 }
+
+.network {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+  box-shadow: var(--shadow);
+}

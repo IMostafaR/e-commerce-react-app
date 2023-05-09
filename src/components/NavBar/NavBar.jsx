@@ -80,8 +80,8 @@ export default function NavBar({ userData, logOut }) {
                     <Link className="nav-link px-3" to="cart">
                       <i className="fas fa-shopping-cart fa-lg"></i>
                       <span
-                        className={`badge bg-main text-white position-absolute top-0 end-0 ${
-                          animateCart ? "fa-bounce" : ""
+                        className={`badge text-white position-absolute top-0 end-0 ${
+                          animateCart ? "fa-bounce bg-danger" : "bg-main"
                         }`}
                       >
                         {numOfCartItems}
