@@ -17,8 +17,8 @@ import jwtDecode from "jwt-decode";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import CartContextProvider from "./context/CartContext";
 import ProductContextProvider from "./context/ProductContext";
-import toast, { Toaster } from "react-hot-toast";
-import { Offline, Online } from "react-detect-offline";
+import { Toaster } from "react-hot-toast";
+import { Offline } from "react-detect-offline";
 
 function App() {
   const [userData, setUserData] = useState(null);
