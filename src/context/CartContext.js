@@ -1,9 +1,12 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
+import { userContext } from "../../context/UserContext";
 
 export let cartContext = createContext();
 
 export default function CartContextProvider(props) {
+  let { userData } = useContext(userContext);
+
   const [cartId, setCartId] = useState(null);
   const [numOfCartItems, setNumOfCartItems] = useState(0);
   const [animateCart, setAnimateCart] = useState(false);
@@ -105,6 +108,13 @@ export default function CartContextProvider(props) {
       .catch((error) => error);
   }
 
+  async function getAllUserOrders() {
+    let { data } = await axios.get(
+      `https://route-ecommerce.onrender.com/api/v1/orders/user/${userData.id}`
+    );
+    console.log(data);
+  }
+
   return (
     <cartContext.Provider
       value={{
@@ -119,6 +129,7 @@ export default function CartContextProvider(props) {
         updateCartItemCount,
         clearCart,
         onlinePayment,
+        getAllUserOrders,
       }}
     >
       {props.children}
