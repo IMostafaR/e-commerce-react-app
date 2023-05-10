@@ -3,9 +3,11 @@ import { cartContext } from "../../context/CartContext";
 import styles from "./NavBar.module.css";
 import { images } from "../../assets/images";
 import { Link } from "react-router-dom";
+import { userContext } from "../../context/UserContext";
 
-export default function NavBar({ userData, logOut }) {
+export default function NavBar() {
   let { numOfCartItems, animateCart } = useContext(cartContext);
+  let { userData, logOut } = useContext(userContext);
 
   return (
     <>
@@ -90,11 +92,12 @@ export default function NavBar({ userData, logOut }) {
                   </li>
                   <li className="nav-item">
                     <Link
+                      to={"/login"}
                       className="nav-link px-2 text-danger"
                       onClick={logOut}
                     >
                       Logout
-                      <i className="fa-solid fa-arrow-right-from-bracket mx-2"></i>{" "}
+                      <i className="fa-solid fa-arrow-right-from-bracket mx-2"></i>
                     </Link>
                   </li>
                 </>

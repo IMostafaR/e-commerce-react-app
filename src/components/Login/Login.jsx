@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { userContext } from "../../context/UserContext";
 import styles from "./Login.module.css";
 import { useFormik } from "formik";
 import ShowPassword from "../ShowPassword/ShowPassword";
@@ -7,7 +8,9 @@ import * as Yup from "yup";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 
-export default function Login({ saveUserData }) {
+export default function Login() {
+  let { saveUserData } = useContext(userContext);
+
   let navigate = useNavigate();
 
   const [btnLoader, setBtnLoader] = useState(false);
@@ -19,7 +22,7 @@ export default function Login({ saveUserData }) {
   async function handleLogin(values) {
     setBtnLoader(true);
     let { data } = await axios
-      .post(`https://route-ecommerce-app.vercel.app/api/v1/auth/signin`, values)
+      .post(`https://route-ecommerce.onrender.com/api/v1/auth/signin`, values)
       .catch((err) => {
         setBtnLoader(false);
         setMsgError(`${err.response.data.message}`);

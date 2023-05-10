@@ -22,7 +22,7 @@ export default function FeaturedProducts() {
   async function getFeaturedProducts() {
     setLoader(true);
     let { data } = await axios.get(
-      `https://route-ecommerce-app.vercel.app/api/v1/products`
+      `https://route-ecommerce.onrender.com/api/v1/products`
     );
     setFeaturedProducts(data.data);
     setLoader(false);

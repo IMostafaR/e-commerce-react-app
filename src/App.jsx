@@ -9,36 +9,23 @@ import Categories from "./components/Categories/Categories";
 import Brands from "./components/Brands/Brands";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Checkout from "./components/Checkout/Checkout";
+import AllOrders from "./components/AllOrders/AllOrders";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import NotFound from "./components/NotFound/NotFound";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import jwtDecode from "jwt-decode";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import CartContextProvider from "./context/CartContext";
 import ProductContextProvider from "./context/ProductContext";
 import { Toaster } from "react-hot-toast";
 import { Offline } from "react-detect-offline";
+import UserContextProvider from "./context/UserContext";
 
 function App() {
-  const [userData, setUserData] = useState(null);
-
-  useEffect(() => {
-    if (localStorage.getItem("userToken")) {
-      saveUserData();
-    }
-  }, []);
-
-  function saveUserData() {
-    let encodedToken = localStorage.getItem("userToken");
-    let decodedToken = jwtDecode(encodedToken);
-    setUserData(decodedToken);
-  }
-
   let routers = createBrowserRouter([
     {
       path: "",
-      element: <Layout userData={userData} setUserData={setUserData} />,
+      element: <Layout />,
       children: [
         {
           index: true,
@@ -96,7 +83,15 @@ function App() {
             </ProtectedRoute>
           ),
         },
-        { path: "login", element: <Login saveUserData={saveUserData} /> },
+        {
+          path: "allorders",
+          element: (
+            <ProtectedRoute>
+              <AllOrders />
+            </ProtectedRoute>
+          ),
+        },
+        { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
         { path: "*", element: <NotFound /> },
       ],
@@ -104,18 +99,20 @@ function App() {
   ]);
   return (
     <>
-      <CartContextProvider>
-        <ProductContextProvider>
-          <Offline>
-            <span className="network rounded-4 text-warning fw-bolder p-3 bg-black font-sm">
-              <i className="fa-solid fa-wifi fa-beat-fade me-2"></i> You're
-              offline, check your network!
-            </span>
-          </Offline>
-          <Toaster />
-          <RouterProvider router={routers}></RouterProvider>
-        </ProductContextProvider>
-      </CartContextProvider>
+      <UserContextProvider>
+        <CartContextProvider>
+          <ProductContextProvider>
+            <Offline>
+              <span className="network rounded-4 text-warning fw-bolder p-3 bg-black font-sm">
+                <i className="fa-solid fa-wifi fa-beat-fade me-2"></i> You're
+                offline, check your network!
+              </span>
+            </Offline>
+            <Toaster />
+            <RouterProvider router={routers}></RouterProvider>
+          </ProductContextProvider>
+        </CartContextProvider>
+      </UserContextProvider>
     </>
   );
 }
