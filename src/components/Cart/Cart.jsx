@@ -5,10 +5,16 @@ import Loader from "../Loader/Loader";
 import { toast } from "react-hot-toast";
 import { images } from "../../assets/images";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function Cart() {
-  let { getLoggedUserCart, removeCartItem, updateCartItemCount, clearCart } =
-    useContext(cartContext);
+  let {
+    getLoggedUserCart,
+    removeCartItem,
+    updateCartItemCount,
+    clearCart,
+    setNumOfCartItems,
+  } = useContext(cartContext);
 
   const [loader, setLoader] = useState(false);
   const [cartDetails, setCartDetails] = useState(null);
@@ -74,6 +80,7 @@ export default function Cart() {
     let response = await clearCart();
     if (response?.data?.message === "success") {
       setCartDetails(null);
+      setNumOfCartItems(0);
     }
     setBtnLoader(false);
   }
@@ -85,6 +92,9 @@ export default function Cart() {
 
   return (
     <>
+      <Helmet>
+        <title>Cart</title>
+      </Helmet>
       {loader ? (
         <Loader />
       ) : (

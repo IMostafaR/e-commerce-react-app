@@ -1,23 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./ProductDetails.module.css";
 import Slider from "react-slick";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Loader/Loader";
+import { Helmet } from "react-helmet";
+import { productContext } from "../../context/ProductContext";
 
 export default function ProductDetails() {
   let { id } = useParams();
 
   const [productDetails, setProductDetails] = useState([]);
   const [loader, setLoader] = useState(false);
+  const [activeBtnId, setActiveBtnId] = useState(null);
+  const [btnLoader, setBtnLoader] = useState(false);
+
+  let { addProduct } = useContext(productContext);
 
   async function getProductDetails() {
     setLoader(true);
     let { data } = await axios.get(
-      `https://route-ecommerce.onrender.com/api/v1/products/${id}`
+      `https://route-ecommerce-app.vercel.app/api/v1/products/${id}`
     );
     setProductDetails(data.data);
     setLoader(false);
+  }
+
+  async function addNewProduct(productId) {
+    setBtnLoader(true);
+    await addProduct(productId);
+    setBtnLoader(false);
   }
 
   useEffect(() => {
@@ -37,6 +49,9 @@ export default function ProductDetails() {
 
   return (
     <>
+      <Helmet>
+        <title>Product Details</title>
+      </Helmet>
       {loader ? (
         <Loader />
       ) : (
@@ -64,7 +79,21 @@ export default function ProductDetails() {
                   {productDetails.ratingsAverage}
                 </span>
               </div>
-              <button className="btn bg-main text-white w-100">+ Add</button>
+              <button
+                onClick={() => {
+                  if (!btnLoader) {
+                    setActiveBtnId(id);
+                    addNewProduct(id);
+                  }
+                }}
+                className="btn bg-main text-white w-100"
+              >
+                {btnLoader && activeBtnId === id ? (
+                  <i className="fa-solid fa-spinner fa-spin-pulse"></i>
+                ) : (
+                  "+ Add"
+                )}
+              </button>
             </div>
           </div>
         </div>

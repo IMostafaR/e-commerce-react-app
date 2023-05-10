@@ -3,8 +3,7 @@ import styles from "./FeaturedProducts.module.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
-import { cartContext } from "../../context/CartContext";
-import { toast } from "react-hot-toast";
+import { productContext } from "../../context/ProductContext";
 
 export default function FeaturedProducts() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
@@ -12,42 +11,18 @@ export default function FeaturedProducts() {
   const [activeBtnId, setActiveBtnId] = useState(null);
   const [btnLoader, setBtnLoader] = useState(false);
 
-  let { addToCart, setNumOfCartItems, setAnimateCart } =
-    useContext(cartContext);
+  let { addProduct } = useContext(productContext);
 
-  async function addProduct(productId) {
+  async function addNewProduct(productId) {
     setBtnLoader(true);
-    let response = await addToCart(productId);
-    if (response?.data?.status === "success") {
-      setNumOfCartItems(response.data.numOfCartItems);
-      setAnimateCart(true);
-      setTimeout(() => {
-        setAnimateCart(false);
-      }, 1000);
-      toast.success(response.data.message, {
-        duration: 4000,
-        position: "bottom-right",
-        className:
-          "text-center border-2 border-success shadow bg-dark text-white font-sm",
-      });
-    } else {
-      toast.error(
-        "There is error during adding to your cart, please try again",
-        {
-          duration: 4000,
-          position: "bottom-right",
-          className:
-            "text-center border-2 border-success shadow bg-dark text-white font-sm",
-        }
-      );
-    }
+    await addProduct(productId);
     setBtnLoader(false);
   }
 
   async function getFeaturedProducts() {
     setLoader(true);
     let { data } = await axios.get(
-      `https://route-ecommerce.onrender.com/api/v1/products`
+      `https://route-ecommerce-app.vercel.app/api/v1/products`
     );
     setFeaturedProducts(data.data);
     setLoader(false);
@@ -94,7 +69,7 @@ export default function FeaturedProducts() {
                   onClick={() => {
                     if (!btnLoader) {
                       setActiveBtnId(product._id);
-                      addProduct(product._id);
+                      addNewProduct(product._id);
                     }
                   }}
                   className="btn bg-main text-white w-100"

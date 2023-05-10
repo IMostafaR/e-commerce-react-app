@@ -4,6 +4,7 @@ import styles from "./Checkout.module.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 export default function Checkout() {
   let { onlinePayment, cartId } = useContext(cartContext);
@@ -40,6 +41,9 @@ export default function Checkout() {
 
   return (
     <>
+      <Helmet>
+        <title>Checkout</title>
+      </Helmet>
       <div className="d-flex justify-content-center align-items-center min-vh-100">
         <div className="shadow-card rounded-4 p-5 w-75">
           <h2 className="fw-bold mb-4 text-center">

@@ -5,6 +5,7 @@ import ShowPassword from "../ShowPassword/ShowPassword";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 export default function Login({ saveUserData }) {
   let navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function Login({ saveUserData }) {
   async function handleLogin(values) {
     setBtnLoader(true);
     let { data } = await axios
-      .post(`https://route-ecommerce.onrender.com/api/v1/auth/signin`, values)
+      .post(`https://route-ecommerce-app.vercel.app/api/v1/auth/signin`, values)
       .catch((err) => {
         setBtnLoader(false);
         setMsgError(`${err.response.data.message}`);
@@ -48,6 +49,9 @@ export default function Login({ saveUserData }) {
 
   return (
     <>
+      <Helmet>
+        <title>Fresh Cart Login</title>
+      </Helmet>
       <div className="d-flex justify-content-center align-items-center min-vh-100">
         <div className="shadow-card rounded-4 p-5">
           <h2 className="fw-bold mb-3 text-center">Log In</h2>

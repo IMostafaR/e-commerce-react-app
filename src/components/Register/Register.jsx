@@ -5,6 +5,8 @@ import ShowPassword from "../ShowPassword/ShowPassword";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
+import { Helmet } from "react-helmet";
+import { toast } from "react-hot-toast";
 
 export default function Register() {
   let navigate = useNavigate();
@@ -18,7 +20,7 @@ export default function Register() {
   async function handleRegister(values) {
     setBtnLoader(true);
     let { data } = await axios
-      .post(`https://route-ecommerce.onrender.com/api/v1/auth/signup`, values)
+      .post(`https://route-ecommerce-app.vercel.app/api/v1/auth/signup`, values)
       .catch((err) => {
         setBtnLoader(false);
         setMsgError(`${err.response.data.message}`);
@@ -27,6 +29,12 @@ export default function Register() {
     if (data.message === "success") {
       setBtnLoader(false);
       navigate("/login");
+      toast.success(`Registration success, please login`, {
+        duration: 7000,
+        position: "top-center",
+        className:
+          "text-center border-2 border-success shadow bg-dark text-white font-sm",
+      });
     }
   }
 
@@ -64,6 +72,9 @@ export default function Register() {
 
   return (
     <>
+      <Helmet>
+        <title>Fresh Cart Register</title>
+      </Helmet>
       <div className="d-flex justify-content-center align-items-center min-vh-100">
         <div className="shadow-card rounded-4 p-5">
           <h2 className="fw-bold mb-4 text-center">Register Now</h2>

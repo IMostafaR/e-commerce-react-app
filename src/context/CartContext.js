@@ -26,7 +26,7 @@ export default function CartContextProvider(props) {
   function addToCart(productId) {
     return axios
       .post(
-        `https://route-ecommerce.onrender.com/api/v1/cart`,
+        `https://route-ecommerce-app.vercel.app/api/v1/cart`,
         {
           productId: productId,
         },
@@ -41,7 +41,7 @@ export default function CartContextProvider(props) {
   function getLoggedUserCart() {
     return axios
       .get(
-        `https://route-ecommerce.onrender.com/api/v1/cart`,
+        `https://route-ecommerce-app.vercel.app/api/v1/cart`,
 
         {
           headers: headers,
@@ -54,7 +54,7 @@ export default function CartContextProvider(props) {
   function removeCartItem(productId) {
     return axios
       .delete(
-        `https://route-ecommerce.onrender.com/api/v1/cart/${productId}`,
+        `https://route-ecommerce-app.vercel.app/api/v1/cart/${productId}`,
 
         {
           headers: headers,
@@ -67,7 +67,7 @@ export default function CartContextProvider(props) {
   function updateCartItemCount(productId, count) {
     return axios
       .put(
-        `https://route-ecommerce.onrender.com/api/v1/cart/${productId}`,
+        `https://route-ecommerce-app.vercel.app/api/v1/cart/${productId}`,
         { count: count },
 
         {
@@ -81,7 +81,7 @@ export default function CartContextProvider(props) {
   function clearCart() {
     return axios
       .delete(
-        `https://route-ecommerce.onrender.com/api/v1/cart/`,
+        `https://route-ecommerce-app.vercel.app/api/v1/cart/`,
 
         {
           headers: headers,
@@ -94,7 +94,7 @@ export default function CartContextProvider(props) {
   function onlinePayment(cartId, shippingAddress) {
     return axios
       .post(
-        `https://route-ecommerce.onrender.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
+        `https://route-ecommerce-app.vercel.app/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
         { shippingAddress: shippingAddress },
 
         {

@@ -16,6 +16,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import CartContextProvider from "./context/CartContext";
+import ProductContextProvider from "./context/ProductContext";
 import toast, { Toaster } from "react-hot-toast";
 import { Offline, Online } from "react-detect-offline";
 
@@ -104,14 +105,16 @@ function App() {
   return (
     <>
       <CartContextProvider>
-        <Offline>
-          <span className="network rounded-4 text-warning fw-bolder p-3 bg-black font-sm">
-            <i className="fa-solid fa-wifi fa-beat-fade me-2"></i> You're
-            offline, check your network!
-          </span>
-        </Offline>
-        <Toaster />
-        <RouterProvider router={routers}></RouterProvider>
+        <ProductContextProvider>
+          <Offline>
+            <span className="network rounded-4 text-warning fw-bolder p-3 bg-black font-sm">
+              <i className="fa-solid fa-wifi fa-beat-fade me-2"></i> You're
+              offline, check your network!
+            </span>
+          </Offline>
+          <Toaster />
+          <RouterProvider router={routers}></RouterProvider>
+        </ProductContextProvider>
       </CartContextProvider>
     </>
   );
