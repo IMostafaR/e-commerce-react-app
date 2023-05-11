@@ -56,6 +56,11 @@ function App() {
         },
         {
           index: true,
+          element: (
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "cart",
