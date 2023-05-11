@@ -28,7 +28,7 @@ export default function Footer() {
           </div>
           <div className="row border-top border-bottom py-2 align-items-center">
             <div className="col-lg-6">
-              <div className="my-3 d-flex align-items-center">
+              <div className="my-3 d-md-flex align-items-center">
                 <p className="fw-bolder m-0">Payment Partners</p>
                 <div className={`${styles.partners}`}>
                   <img className="mx-3" src={images.amazonPay} alt="" />
@@ -39,7 +39,7 @@ export default function Footer() {
               </div>
             </div>
             <div className="col-lg-6">
-              <div className="my-3 d-flex align-items-center">
+              <div className="my-3 d-md-flex align-items-center">
                 <p className="fw-bolder m-0 me-4">
                   Get deliveries with FreshCart
                 </p>

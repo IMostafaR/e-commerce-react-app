@@ -20,6 +20,7 @@ export default function CategorySlider() {
   let settings = {
     dots: true,
     infinite: false,
+    arrows: false,
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 4,
@@ -57,7 +58,7 @@ export default function CategorySlider() {
     <>
       <Slider {...settings}>
         {categories.map((category) => (
-          <div key={category._id} className="px-2 mt-5">
+          <div key={category._id} className="px-md-2 mt-5 px-0">
             <img
               height={200}
               width={"100%"}
