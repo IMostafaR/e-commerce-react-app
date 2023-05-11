@@ -102,7 +102,7 @@ function App() {
           path: "allorders",
           element: (
             <ProtectedRoute>
-              <AllOrders />
+              <AllOrders userData={userData} />
             </ProtectedRoute>
           ),
         },
@@ -110,7 +110,7 @@ function App() {
           path: "profile",
           element: (
             <ProtectedRoute>
-              <Profile />
+              <Profile userData={userData} setUserData={setUserData} />
             </ProtectedRoute>
           ),
         },
@@ -124,12 +124,12 @@ function App() {
     <>
       <CartContextProvider>
         <ProductContextProvider>
-          <Offline>
+          {/* <Offline>
             <span className="network rounded-4 text-warning fw-bolder p-3 bg-black font-sm">
               <i className="fa-solid fa-wifi fa-beat-fade me-2"></i> You're
               offline, check your network!
             </span>
-          </Offline>
+          </Offline> */}
           <Toaster />
           <RouterProvider router={routers}></RouterProvider>
         </ProductContextProvider>

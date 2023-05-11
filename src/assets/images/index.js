@@ -14,6 +14,7 @@ import americanExpress from "./American-Express-Color.png";
 import mastercard from "./MasterCard_Logo.svg.webp";
 import paypal from "./PayPal.svg.png";
 import emptyCart from "./empty-cart.gif";
+import avatar from "./avatar.svg";
 
 export const images = {
   logo,
@@ -32,4 +33,5 @@ export const images = {
   mastercard,
   paypal,
   emptyCart,
+  avatar,
 };

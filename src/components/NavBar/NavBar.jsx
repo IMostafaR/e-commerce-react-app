@@ -106,7 +106,7 @@ export default function NavBar({ userData, logOut }) {
                       onClick={logOut}
                     >
                       Logout
-                      <i className="fa-solid fa-arrow-right-from-bracket mx-2"></i>{" "}
+                      <i className="fa-solid fa-arrow-right-from-bracket mx-2"></i>
                     </Link>
                   </li>
                 </>

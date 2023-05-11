@@ -92,17 +92,19 @@ export default function CartContextProvider(props) {
   }
 
   function onlinePayment(cartId, shippingAddress) {
-    return axios
-      .post(
-        `https://route-ecommerce-app.vercel.app/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
-        { shippingAddress: shippingAddress },
+    if (cartId !== null) {
+      return axios
+        .post(
+          `https://route-ecommerce-app.vercel.app/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
+          { shippingAddress: shippingAddress },
 
-        {
-          headers: headers,
-        }
-      )
-      .then((response) => response)
-      .catch((error) => error);
+          {
+            headers: headers,
+          }
+        )
+        .then((response) => response)
+        .catch((error) => error);
+    }
   }
 
   return (
