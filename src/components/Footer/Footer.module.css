@@ -1,1 +1,20 @@
-.Footer {}
+.partners {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+.partners img {
+  width: 4rem;
+}
+.store {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+.apple {
+  width: 6.15rem;
+}
+
+.google {
+  width: 7.5rem;
+}

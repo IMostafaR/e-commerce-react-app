@@ -11,6 +11,8 @@ import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Checkout from "./components/Checkout/Checkout";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
+import Profile from "./components/Profile/Profile";
+import AllOrders from "./components/AllOrders/AllOrders";
 import NotFound from "./components/NotFound/NotFound";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import jwtDecode from "jwt-decode";
@@ -93,6 +95,22 @@ function App() {
           element: (
             <ProtectedRoute>
               <Checkout />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "allorders",
+          element: (
+            <ProtectedRoute>
+              <AllOrders />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "profile",
+          element: (
+            <ProtectedRoute>
+              <Profile />
             </ProtectedRoute>
           ),
         },

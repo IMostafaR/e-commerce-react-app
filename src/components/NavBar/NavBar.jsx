@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 export default function NavBar({ userData, logOut }) {
   let { numOfCartItems, animateCart } = useContext(cartContext);
-  console.log(userData);
 
   return (
     <>
@@ -39,7 +38,7 @@ export default function NavBar({ userData, logOut }) {
                     Products
                   </Link>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link className="nav-link" to="categories">
                     Categories
                   </Link>
@@ -48,7 +47,7 @@ export default function NavBar({ userData, logOut }) {
                   <Link className="nav-link" to="brands">
                     Brands
                   </Link>
-                </li>
+                </li> */}
               </ul>
             ) : null}
 

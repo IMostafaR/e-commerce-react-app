@@ -26,32 +26,30 @@ export default function Footer() {
               </button>
             </div>
           </div>
-          <div className="row border-top border-bottom py-2">
+          <div className="row border-top border-bottom py-2 align-items-center">
             <div className="col-lg-6">
-              <div className="my-3 d-flex">
+              <div className="my-3 d-flex align-items-center">
                 <p className="fw-bolder m-0">Payment Partners</p>
-                <div>
-                  <img className="w-25" src={images.amazonPay} alt="" />
-                </div>
-                <div>
-                  <img className="w-25" src={images.americanExpress} alt="" />
-                </div>
-                <div>
-                  <img className="w-25" src={images.mastercard} alt="" />
-                </div>
-                <div>
-                  <img className="w-25" src={images.paypal} alt="" />
+                <div className={`${styles.partners}`}>
+                  <img className="mx-3" src={images.amazonPay} alt="" />
+                  <img className="mx-3" src={images.americanExpress} alt="" />
+                  <img className="mx-3" src={images.mastercard} alt="" />
+                  <img className="mx-3" src={images.paypal} alt="" />
                 </div>
               </div>
             </div>
             <div className="col-lg-6">
               <div className="my-3 d-flex align-items-center">
-                <p className="fw-bolder m-0">Get deliveries with FreshCart</p>
-                <div>
-                  <img src={images.appStore} alt="" />
-                </div>
-                <div>
-                  <img className="w-25" src={images.googlePlay} alt="" />
+                <p className="fw-bolder m-0 me-4">
+                  Get deliveries with FreshCart
+                </p>
+                <div className={`${styles.store}`}>
+                  <img className={styles.apple} src={images.appStore} alt="" />
+                  <img
+                    className={styles.google}
+                    src={images.googlePlay}
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
