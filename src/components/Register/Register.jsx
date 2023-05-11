@@ -20,7 +20,7 @@ export default function Register() {
   async function handleRegister(values) {
     setBtnLoader(true);
     let { data } = await axios
-      .post(`https://route-ecommerce.onrender.com/api/v1/auth/signup`, values)
+      .post(`https://route-ecommerce-app.vercel.app/api/v1/auth/signup`, values)
       .catch((err) => {
         setBtnLoader(false);
         setMsgError(`${err.response.data.message}`);

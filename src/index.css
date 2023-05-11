@@ -96,3 +96,14 @@ a:hover {
   z-index: 999;
   box-shadow: var(--shadow);
 }
+
+.cart-badge {
+  top: -12px;
+  right: -10px;
+}
+
+.badge-profile {
+  font-size: 10px;
+  bottom: -15px;
+  left: -50%;
+}

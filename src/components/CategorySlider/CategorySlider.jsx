@@ -8,7 +8,7 @@ export default function CategorySlider() {
 
   async function getCategories() {
     let { data } = await axios.get(
-      `https://route-ecommerce.onrender.com/api/v1/categories`
+      `https://route-ecommerce-app.vercel.app/api/v1/categories`
     );
     setCategories(data.data);
   }

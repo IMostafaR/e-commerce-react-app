@@ -3,11 +3,10 @@ import { cartContext } from "../../context/CartContext";
 import styles from "./NavBar.module.css";
 import { images } from "../../assets/images";
 import { Link } from "react-router-dom";
-import { userContext } from "../../context/UserContext";
 
-export default function NavBar() {
+export default function NavBar({ userData, logOut }) {
   let { numOfCartItems, animateCart } = useContext(cartContext);
-  let { userData, logOut } = useContext(userContext);
+  console.log(userData);
 
   return (
     <>
@@ -54,6 +53,18 @@ export default function NavBar() {
             ) : null}
 
             <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
+              {userData !== null ? (
+                <li className="nav-item mx-3 mb-3 mb-md-auto">
+                  <Link to="/profile" className="nav-link px-2">
+                    <span className="position-relative">
+                      <i className="fa-solid fa-user fa-lg"></i>
+                      <span className="badge-profile text-dark position-absolute fw-bold rounded-bill">
+                        {userData.name}
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              ) : null}
               <li className="nav-item d-flex align-items-center">
                 <i className="fab fa-instagram mx-2"></i>
                 <i className="fab fa-facebook mx-2"></i>
@@ -92,12 +103,11 @@ export default function NavBar() {
                   </li>
                   <li className="nav-item">
                     <Link
-                      to={"/login"}
                       className="nav-link px-2 text-danger"
                       onClick={logOut}
                     >
                       Logout
-                      <i className="fa-solid fa-arrow-right-from-bracket mx-2"></i>
+                      <i className="fa-solid fa-arrow-right-from-bracket mx-2"></i>{" "}
                     </Link>
                   </li>
                 </>

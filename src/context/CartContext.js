@@ -1,12 +1,9 @@
 import axios from "axios";
-import { createContext, useEffect, useState, useContext } from "react";
-import { userContext } from "../../context/UserContext";
+import { createContext, useEffect, useState } from "react";
 
 export let cartContext = createContext();
 
 export default function CartContextProvider(props) {
-  let { userData } = useContext(userContext);
-
   const [cartId, setCartId] = useState(null);
   const [numOfCartItems, setNumOfCartItems] = useState(0);
   const [animateCart, setAnimateCart] = useState(false);
@@ -29,7 +26,7 @@ export default function CartContextProvider(props) {
   function addToCart(productId) {
     return axios
       .post(
-        `https://route-ecommerce.onrender.com/api/v1/cart`,
+        `https://route-ecommerce-app.vercel.app/api/v1/cart`,
         {
           productId: productId,
         },
@@ -44,7 +41,7 @@ export default function CartContextProvider(props) {
   function getLoggedUserCart() {
     return axios
       .get(
-        `https://route-ecommerce.onrender.com/api/v1/cart`,
+        `https://route-ecommerce-app.vercel.app/api/v1/cart`,
 
         {
           headers: headers,
@@ -57,7 +54,7 @@ export default function CartContextProvider(props) {
   function removeCartItem(productId) {
     return axios
       .delete(
-        `https://route-ecommerce.onrender.com/api/v1/cart/${productId}`,
+        `https://route-ecommerce-app.vercel.app/api/v1/cart/${productId}`,
 
         {
           headers: headers,
@@ -70,7 +67,7 @@ export default function CartContextProvider(props) {
   function updateCartItemCount(productId, count) {
     return axios
       .put(
-        `https://route-ecommerce.onrender.com/api/v1/cart/${productId}`,
+        `https://route-ecommerce-app.vercel.app/api/v1/cart/${productId}`,
         { count: count },
 
         {
@@ -84,7 +81,7 @@ export default function CartContextProvider(props) {
   function clearCart() {
     return axios
       .delete(
-        `https://route-ecommerce.onrender.com/api/v1/cart/`,
+        `https://route-ecommerce-app.vercel.app/api/v1/cart/`,
 
         {
           headers: headers,
@@ -97,7 +94,7 @@ export default function CartContextProvider(props) {
   function onlinePayment(cartId, shippingAddress) {
     return axios
       .post(
-        `https://route-ecommerce.onrender.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
+        `https://route-ecommerce-app.vercel.app/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
         { shippingAddress: shippingAddress },
 
         {
@@ -106,13 +103,6 @@ export default function CartContextProvider(props) {
       )
       .then((response) => response)
       .catch((error) => error);
-  }
-
-  async function getAllUserOrders() {
-    let { data } = await axios.get(
-      `https://route-ecommerce.onrender.com/api/v1/orders/user/${userData.id}`
-    );
-    console.log(data);
   }
 
   return (
@@ -129,7 +119,6 @@ export default function CartContextProvider(props) {
         updateCartItemCount,
         clearCart,
         onlinePayment,
-        getAllUserOrders,
       }}
     >
       {props.children}

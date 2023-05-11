@@ -20,7 +20,7 @@ export default function ProductDetails() {
   async function getProductDetails() {
     setLoader(true);
     let { data } = await axios.get(
-      `https://route-ecommerce.onrender.com/api/v1/products/${id}`
+      `https://route-ecommerce-app.vercel.app/api/v1/products/${id}`
     );
     setProductDetails(data.data);
     setLoader(false);
