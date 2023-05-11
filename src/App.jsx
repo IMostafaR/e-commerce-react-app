@@ -17,6 +17,7 @@ import NotFound from "./components/NotFound/NotFound";
 import {
   RouterProvider,
   createBrowserRouter,
+  createHashRouter,
   redirect,
 } from "react-router-dom";
 import jwtDecode from "jwt-decode";
@@ -41,7 +42,7 @@ function App() {
     setUserData(decodedToken);
   }
 
-  let routers = createBrowserRouter([
+  let routers = createHashRouter([
     {
       path: "/e-commerce-react-app",
       element: (
