@@ -14,7 +14,11 @@ import Register from "./components/Register/Register";
 import Profile from "./components/Profile/Profile";
 import AllOrders from "./components/AllOrders/AllOrders";
 import NotFound from "./components/NotFound/NotFound";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+} from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import CartContextProvider from "./context/CartContext";
@@ -39,11 +43,11 @@ function App() {
 
   let routers = createBrowserRouter([
     {
-      path: "",
+      path: "/",
       element: <Layout userData={userData} setUserData={setUserData} />,
       children: [
         {
-          index: true,
+          path: "/e-commerce-react-app",
           element: (
             <ProtectedRoute>
               <Home />
@@ -51,12 +55,7 @@ function App() {
           ),
         },
         {
-          path: "e-commerce-react-app",
-          element: (
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          ),
+          index: true,
         },
         {
           path: "cart",
