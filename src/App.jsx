@@ -51,6 +51,14 @@ function App() {
           ),
         },
         {
+          path: "e-commerce-react-app",
+          element: (
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          ),
+        },
+        {
           path: "cart",
           element: (
             <ProtectedRoute>
