@@ -43,17 +43,17 @@ function App() {
 
   let routers = createBrowserRouter([
     {
+      path: "/e-commerce-react-app",
+      element: (
+        <ProtectedRoute>
+          <Home />
+        </ProtectedRoute>
+      ),
+    },
+    {
       path: "/",
       element: <Layout userData={userData} setUserData={setUserData} />,
       children: [
-        {
-          path: "/e-commerce-react-app",
-          element: (
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          ),
-        },
         {
           index: true,
           element: (
