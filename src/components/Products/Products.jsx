@@ -45,7 +45,7 @@ export default function Products() {
               className="col-xl-2 col-lg-3 col-md-4 col-sm-6 g-3"
             >
               <div className="product p-4 cursor-pointer shadow rounded-3 overflow-hidden">
-                <Link to={`product/${product._id}`}>
+                <Link to={`/product/${product._id}`}>
                   <img
                     className="img-fluid mb-2"
                     src={product.imageCover}
