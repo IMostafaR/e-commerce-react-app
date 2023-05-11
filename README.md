@@ -28,7 +28,6 @@ This is my work assigned by [Route-Academy](https://www.linkedin.com/company/rou
 ### Links
 
 - Solution URL: [Code](https://github.com/IMostafaR/e-commerce-react-app)
-- Live app URL: [Code](https://imostafar.github.io/e-commerce-react-app/)
 
 ## Scripts
 
