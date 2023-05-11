@@ -16,7 +16,6 @@ export default function AllOrders({ userData }) {
         `https://route-ecommerce-app.vercel.app/api/v1/orders/user/${userData.id}`
       );
       setAllOrdersDetails(data);
-      // console.log(data.totalOrderPrice);
     }
     setLoader(false);
   }
@@ -84,9 +83,18 @@ export default function AllOrders({ userData }) {
                 <div className="col-md-6">
                   <h5 className="fw-bold">Delivery</h5>
                   <p className="font-sm text-muted">Address</p>
-                  <p>{order.shippingAddress.details}</p>
-                  <p>{order.shippingAddress.city}</p>
-                  <p>{order.shippingAddress.phone}</p>
+                  <p>
+                    <span className="fw-bold">Details:</span>{" "}
+                    {order.shippingAddress.details}
+                  </p>
+                  <p>
+                    <span className="fw-bold">City:</span>{" "}
+                    {order.shippingAddress.city}
+                  </p>
+                  <p>
+                    <span className="fw-bold">Phone number:</span>{" "}
+                    {order.shippingAddress.phone}
+                  </p>
                 </div>
               </div>
             </div>

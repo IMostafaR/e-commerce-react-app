@@ -88,15 +88,17 @@ export default function NavBar({ userData, logOut }) {
                 </>
               ) : (
                 <>
-                  <li className="nav-item position-relative">
+                  <li className="nav-item">
                     <Link className="nav-link px-3" to="cart">
-                      <i className="fas fa-shopping-cart fa-lg"></i>
-                      <span
-                        className={`badge text-white position-absolute top-0 end-0 ${
-                          animateCart ? "fa-bounce bg-danger" : "bg-main"
-                        }`}
-                      >
-                        {numOfCartItems}
+                      <span className="position-relative">
+                        <i className="fas fa-shopping-cart fa-lg"></i>
+                        <span
+                          className={`badge text-white position-absolute cart-badge ${
+                            animateCart ? "fa-bounce bg-danger" : "bg-main"
+                          }`}
+                        >
+                          {numOfCartItems}
+                        </span>
                       </span>
                     </Link>
                   </li>

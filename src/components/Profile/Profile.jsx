@@ -35,7 +35,6 @@ export default function Profile({ userData, setUserData }) {
                 My orders
               </Link>
             </p>
-            <p className="text-main fw-bold">Change Password</p>
             <p className="text-danger">
               <Link className="text-danger" onClick={logOut}>
                 Logout

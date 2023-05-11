@@ -19,6 +19,10 @@ export default function CartContextProvider(props) {
     haveCart();
   }, []);
 
+  useEffect(() => {
+    haveCart();
+  }, [haveCart]);
+
   let headers = {
     token: localStorage.getItem("userToken"),
   };
