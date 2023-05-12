@@ -99,7 +99,7 @@ export default function CartContextProvider(props) {
     if (cartId !== null) {
       return axios
         .post(
-          `https://route-ecommerce-app.vercel.app/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
+          `https://route-ecommerce-app.vercel.app/api/v1/orders/checkout-session/${cartId}?url=https://imostafar.github.io/e-commerce-react-app/#`,
           { shippingAddress: shippingAddress },
 
           {
